@@ -222,9 +222,7 @@ export class LspClient {
       ),
     ]);
     if (!Array.isArray(result)) return [];
-    return result
-      .map((raw) => toSymbolMatch(raw))
-      .filter((m): m is SymbolMatch => m !== undefined);
+    return result.map((raw) => toSymbolMatch(raw)).filter((m): m is SymbolMatch => m !== undefined);
   }
 
   async shutdown(): Promise<void> {

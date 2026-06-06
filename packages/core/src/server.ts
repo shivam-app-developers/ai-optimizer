@@ -100,11 +100,7 @@ export async function startServer(options: StartOptions): Promise<void> {
   for (const e of pluginResult.errors) {
     process.stderr.write(`[ai-optimizer] failed to load plugin "${e.spec}": ${e.message}\n`);
   }
-  const packs = [
-    ...loadFreePacks(),
-    ...(options.extraPacks ?? []),
-    ...pluginResult.packs,
-  ];
+  const packs = [...loadFreePacks(), ...(options.extraPacks ?? []), ...pluginResult.packs];
   const context = await detectProject(options.rootDir, packs);
   const counter = new SavingsCounter();
   const interceptor = new Interceptor(context, counter);
@@ -205,13 +201,21 @@ export async function startServer(options: StartOptions): Promise<void> {
     });
   }
   updateStatusFile();
-  function budgetGuard(tool: string, t0: number): { isError: true; content: { type: 'text'; text: string }[] } | undefined {
+  function budgetGuard(
+    tool: string,
+    t0: number,
+  ): { isError: true; content: { type: 'text'; text: string }[] } | undefined {
     const reason = budget.reasonIfExceeded();
     if (!reason) return undefined;
     recordToolEvent(tool, t0, 0, false, 'budget_exceeded');
     return {
       isError: true,
-      content: [{ type: 'text', text: `Refused: ${reason}. Reset with budget_reset or raise the cap in .optimizerrc.json.` }],
+      content: [
+        {
+          type: 'text',
+          text: `Refused: ${reason}. Reset with budget_reset or raise the cap in .optimizerrc.json.`,
+        },
+      ],
     };
   }
 
@@ -469,7 +473,7 @@ export async function startServer(options: StartOptions): Promise<void> {
         title: 'Read a symbol body via LSP (no whole-file read)',
         description: [
           'Resolves a symbol name (e.g. "UserRepository.getUser", "users::repository::get") via the language server\'s workspace/symbol API and returns just the symbol body.',
-          'Use this when you need a function or class definition but not the rest of the file. Falls back to no-match when the LSP can\'t resolve the symbol.',
+          "Use this when you need a function or class definition but not the rest of the file. Falls back to no-match when the LSP can't resolve the symbol.",
           `Detected frameworks: ${detectedSummary}${gitignoreNote}`,
         ].join(' '),
         inputSchema: {
@@ -897,7 +901,9 @@ export async function startServer(options: StartOptions): Promise<void> {
       const sessionPart = bs.perSessionTokens !== undefined ? ` / ${bs.perSessionTokens}` : '';
       const dayPart = bs.perDayTokens !== undefined ? ` / ${bs.perDayTokens}` : '';
       if (bs.perSessionTokens !== undefined || bs.perDayTokens !== undefined || bs.dayUsed > 0) {
-        lines.push(`Budget: session ${bs.sessionUsed}${sessionPart}, day ${bs.dayUsed}${dayPart}${bs.exceeded ? ' [EXCEEDED]' : ''}`);
+        lines.push(
+          `Budget: session ${bs.sessionUsed}${sessionPart}, day ${bs.dayUsed}${dayPart}${bs.exceeded ? ' [EXCEEDED]' : ''}`,
+        );
       }
       lines.push(`Operations: ${snapshot.operations}`);
       return { content: [{ type: 'text', text: lines.join('\n') }] };

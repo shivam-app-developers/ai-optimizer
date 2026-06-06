@@ -51,9 +51,7 @@ describe('pickMatches', () => {
   });
   it('filters by container when supplied', () => {
     const matches = [m('getUser', 'UserRepo'), m('getUser', 'AdminRepo')];
-    expect(pickMatches(matches, { container: 'UserRepo', name: 'getUser' })).toEqual([
-      matches[0],
-    ]);
+    expect(pickMatches(matches, { container: 'UserRepo', name: 'getUser' })).toEqual([matches[0]]);
   });
   it('matches container by trailing segment when full path has no hit', () => {
     const matches = [m('getUser', 'UserRepo')];
@@ -63,9 +61,7 @@ describe('pickMatches', () => {
   });
   it('falls back to all exact matches when container filter empties the list', () => {
     const matches = [m('getUser', 'AdminRepo')];
-    expect(pickMatches(matches, { container: 'UserRepo', name: 'getUser' })).toEqual([
-      matches[0],
-    ]);
+    expect(pickMatches(matches, { container: 'UserRepo', name: 'getUser' })).toEqual([matches[0]]);
   });
 });
 
@@ -153,7 +149,7 @@ export class UserRepository {
       contextLines: 1,
       includeImports: true,
     });
-    expect(result.matches[0]!.text.startsWith("import { db }")).toBe(true);
+    expect(result.matches[0]!.text.startsWith('import { db }')).toBe(true);
   });
 
   it('returns empty result when no match', async () => {
@@ -175,7 +171,12 @@ export class UserRepository {
 
   it('skips files that fail to read instead of throwing', async () => {
     const finder = makeFinder([
-      { name: 'foo', filePath: '/missing.ts', range: { startLine: 1, endLine: 1 }, kind: 'function' },
+      {
+        name: 'foo',
+        filePath: '/missing.ts',
+        range: { startLine: 1, endLine: 1 },
+        kind: 'function',
+      },
     ]);
     const result = await readSymbol(finder, 'foo', async () => {
       throw new Error('ENOENT');

@@ -2,11 +2,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import {
-  findContextModeConfig,
-  parseContextModeFile,
-  parseSimpleYaml,
-} from './parser.js';
+import { findContextModeConfig, parseContextModeFile, parseSimpleYaml } from './parser.js';
 
 describe('findContextModeConfig', () => {
   let dir: string;
@@ -68,12 +64,9 @@ describe('parseContextModeFile (JSON)', () => {
 describe('parseSimpleYaml', () => {
   it('parses key: value scalars with type coercion', () => {
     const out = parseSimpleYaml(
-      [
-        'framework: python',
-        'maxTokens: 25000',
-        'enabled: true',
-        'note: "quoted string"',
-      ].join('\n'),
+      ['framework: python', 'maxTokens: 25000', 'enabled: true', 'note: "quoted string"'].join(
+        '\n',
+      ),
     );
     expect(out).toEqual({
       framework: 'python',
@@ -85,13 +78,9 @@ describe('parseSimpleYaml', () => {
 
   it('parses block lists', () => {
     const out = parseSimpleYaml(
-      [
-        'ignore:',
-        '  - build/**',
-        '  - .venv/**',
-        '  - "node_modules/**"',
-        'framework: react',
-      ].join('\n'),
+      ['ignore:', '  - build/**', '  - .venv/**', '  - "node_modules/**"', 'framework: react'].join(
+        '\n',
+      ),
     );
     expect(out).toEqual({
       ignore: ['build/**', '.venv/**', 'node_modules/**'],
