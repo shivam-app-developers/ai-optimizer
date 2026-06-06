@@ -59,9 +59,12 @@ describe('loadPluginPacks', () => {
   });
 
   it('continues loading when one plugin fails', async () => {
-    writeFileSync(join(dir, 'good.mjs'), `export default {
+    writeFileSync(
+      join(dir, 'good.mjs'),
+      `export default {
       id: 'good', name: 'G', detect: async () => true, ignoreGlobs: [],
-    };`);
+    };`,
+    );
     writeFileSync(join(dir, 'bad.mjs'), `export default { id: '', name: '' };`);
     const result = await loadPluginPacks(['./bad.mjs', './good.mjs'], dir);
     expect(result.packs).toHaveLength(1);
@@ -81,9 +84,12 @@ describe('loadPluginPacks', () => {
 
   it('handles absolute paths', async () => {
     const absPath = join(dir, 'abs.mjs');
-    writeFileSync(absPath, `export default {
+    writeFileSync(
+      absPath,
+      `export default {
       id: 'abs', name: 'Abs', detect: async () => true, ignoreGlobs: [],
-    };`);
+    };`,
+    );
     const result = await loadPluginPacks([absPath], dir);
     expect(result.packs).toHaveLength(1);
     expect(result.packs[0]!.id).toBe('abs');

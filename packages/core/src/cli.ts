@@ -40,14 +40,25 @@ interface ProModule {
       label?: string;
       result?: { exitCode: number | null; durationMs: number; timedOut: boolean };
       error?: Error;
-      workStealing?: { servedBy?: string; attempts: Array<{ provider: string; ok: boolean; quotaExhausted: boolean }> };
+      workStealing?: {
+        servedBy?: string;
+        attempts: Array<{ provider: string; ok: boolean; quotaExhausted: boolean }>;
+      };
     }) => void;
     workStealing?: ProviderDispatcherLike;
   }) => SchedulerExtensionLike;
   createWorkStealingDispatcher: (opts: {
-    providers: Array<{ name: string; binary: string; buildArgs: (i: { prompt: string; agent?: string }) => string[] }>;
+    providers: Array<{
+      name: string;
+      binary: string;
+      buildArgs: (i: { prompt: string; agent?: string }) => string[];
+    }>;
   }) => ProviderDispatcherLike;
-  DEFAULT_PROVIDERS: Array<{ name: string; binary: string; buildArgs: (i: { prompt: string; agent?: string }) => string[] }>;
+  DEFAULT_PROVIDERS: Array<{
+    name: string;
+    binary: string;
+    buildArgs: (i: { prompt: string; agent?: string }) => string[];
+  }>;
   createAuditExtension: (opts?: {
     policy?: {
       denyPaths?: string[];
@@ -98,7 +109,10 @@ async function loadProIfLicensed(): Promise<LoadProResult> {
   if (wsEnabled) {
     try {
       workStealing = pro.createWorkStealingDispatcher({ providers: pro.DEFAULT_PROVIDERS });
-      const provs = workStealing.describeProviders().map((p) => `${p.name}(${p.binary})`).join(' → ');
+      const provs = workStealing
+        .describeProviders()
+        .map((p) => `${p.name}(${p.binary})`)
+        .join(' → ');
       process.stderr.write(`[ai-optimizer/work-stealing] enabled — providers: ${provs}\n`);
     } catch (err) {
       process.stderr.write(

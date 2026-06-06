@@ -67,15 +67,7 @@ export function translate(cfg: ContextModeConfig): TranslationResult {
   }
 
   const passedThrough = Object.keys(cfg).filter(
-    (k) =>
-      ![
-        'ignore',
-        'exclude',
-        'framework',
-        'language',
-        'maxTokens',
-        'tokenLimit',
-      ].includes(k),
+    (k) => !['ignore', 'exclude', 'framework', 'language', 'maxTokens', 'tokenLimit'].includes(k),
   );
   if (passedThrough.length > 0) {
     notes.push(
