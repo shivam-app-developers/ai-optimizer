@@ -20,7 +20,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@ai-optimizer/core": "*"
+    "@ai-optimizer/core": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.9.0",
