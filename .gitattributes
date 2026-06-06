@@ -1,0 +1,12 @@
+# Normalize all text files to LF in the repo and on checkout across every
+# platform. Keeps Prettier (endOfLine: "lf") passing on the Windows CI matrix
+# leg, which would otherwise check out CRLF and fail format:check.
+* text=auto eol=lf
+
+# Explicitly binary (never touch line endings)
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
