@@ -42,12 +42,12 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
     "ignore": "^6.0.2",
-    "picomatch": "^4.0.2",
+    "picomatch": "^4.0.7",
     "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.9.0",
-    "@types/picomatch": "^3.0.1",
+    "@types/picomatch": "^4.0.3",
     "vitest": "^4.1.8"
   },
   "engines": {
