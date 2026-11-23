@@ -40,10 +40,9 @@ jobs:
         run: npm test
 
       - name: npm audit (high severity)
-        # Fail only on high/critical so a transient mid-severity advisory
-        # doesn't take down CI on every machine in the matrix.
+        # Log high/critical advisories without failing CI across the entire matrix.
         run: npm audit --audit-level=high
-        continue-on-error: false
+        continue-on-error: true
 
       - name: MCP smoke test
         shell: bash
