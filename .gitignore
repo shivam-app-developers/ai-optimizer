@@ -10,3 +10,7 @@ coverage/
 .idea/
 .next/
 out/
+
+mcp-publisher.exe
+mcp-publisher.tar.gz
+
