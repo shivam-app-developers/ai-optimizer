@@ -3,6 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "description": "AI Token Optimizer monorepo root",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivam-app-developers/ai-optimizer.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "ai",
+    "token-optimization",
+    "context-optimizer",
+    "claude",
+    "cursor"
+  ],
   "workspaces": [
     "packages/*",
     "apps/*",

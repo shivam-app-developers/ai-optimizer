@@ -92,6 +92,13 @@ export async function main(argv: string[] = process.argv.slice(2)): Promise<void
   out.write(
     '\nPro packs: set AI_OPTIMIZER_LICENSE in your shell or in the env block of the MCP config to enable.\n',
   );
+
+  out.write('\nFeedback & Support:\n');
+  out.write('  ⭐ Star us on GitHub: https://github.com/shivam-app-developers/ai-optimizer\n');
+  out.write(
+    '  💬 Report issues or suggest packs: https://github.com/shivam-app-developers/ai-optimizer/issues\n',
+  );
+  out.write('  💡 Review token savings any time by asking your agent: "Run optimizer_status"\n');
 }
 
 async function maybePromptTelemetry(

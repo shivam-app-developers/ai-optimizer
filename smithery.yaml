@@ -15,8 +15,8 @@ startCommand:
     additionalProperties: false
   commandFunction: |-
     (config) => ({
-      command: 'ai-optimizer',
-      args: [],
+      command: 'npx',
+      args: ['-y', '@ai-optimizer/core'],
       env: config.licenseKey
         ? { AI_OPTIMIZER_LICENSE: config.licenseKey }
         : {}

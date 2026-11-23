@@ -1,6 +1,6 @@
 {
   "name": "@ai-optimizer/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server that cuts AI coding agent token usage via framework-aware context optimization",
   "mcpName": "io.github.shivam-app-developers/ai-optimizer",
   "license": "MIT",

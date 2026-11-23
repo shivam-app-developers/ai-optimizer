@@ -1,6 +1,6 @@
 {
   "name": "@ai-optimizer/context-mode-import",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "One-command importer that translates a context-mode config into an ai-optimizer config (.optimizerrc.json).",
   "license": "MIT",
   "repository": {

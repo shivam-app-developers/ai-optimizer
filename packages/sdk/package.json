@@ -1,6 +1,6 @@
 {
   "name": "@ai-optimizer/sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Public SDK for authoring community framework packs for ai-optimizer. Use this to publish your own pack to npm — name it `ai-optimizer-pack-<framework>` and ai-optimizer will load it via the `plugins` config field.",
   "license": "MIT",
   "repository": {

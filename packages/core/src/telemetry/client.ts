@@ -39,7 +39,8 @@ export class TelemetryClient {
 
   constructor(private readonly opts: TelemetryClientOptions) {
     this.enabled = opts.mode === 'on';
-    this.endpoint = opts.endpoint ?? DEFAULT_TELEMETRY_ENDPOINT;
+    this.endpoint =
+      opts.endpoint ?? process.env.AI_OPTIMIZER_TELEMETRY_ENDPOINT ?? DEFAULT_TELEMETRY_ENDPOINT;
     this.fetchFn = opts.fetchFn ?? (globalThis.fetch as FetchLike | undefined);
     this.maxBuf = opts.maxBufferSize ?? 100;
     const interval = opts.flushIntervalMs ?? 30_000;

@@ -99,6 +99,12 @@ npm run build          # build all packages
 npm test               # run all test suites
 ```
 
+## Feedback & Community
+
+- **Star & Share**: If `ai-optimizer` saves you tokens and money, star the repository on [GitHub](https://github.com/shivam-app-developers/ai-optimizer)!
+- **Issues & Suggestions**: Open an issue or propose a framework pack on [GitHub Issues](https://github.com/shivam-app-developers/ai-optimizer/issues).
+- **Check Your Real-Time Savings**: In any connected agent session (Claude Code, Cursor, Windsurf), run the `optimizer_status` tool to see cumulative tokens and dollar savings.
+
 ## Security
 
 Local-only by design — license validation is the only network call. Report

@@ -1,6 +1,6 @@
 {
   "name": "@ai-optimizer/init",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "One-command setup for ai-optimizer — scans your repo, shows the savings preview, and wires the MCP config for Claude Code / Cursor.",
   "license": "MIT",
   "repository": {

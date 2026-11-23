@@ -22,7 +22,7 @@ import { BudgetTracker } from './budget.js';
 import { StatusFileWriter } from './status-file.js';
 
 const SERVER_NAME = 'ai-optimizer';
-const SERVER_VERSION = '0.1.0';
+const SERVER_VERSION = '0.1.1';
 
 export interface CompactedHistory {
   compacted: Array<{ role: string; content: string }>;
